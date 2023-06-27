@@ -25,6 +25,6 @@ augroup YankToScript
   autocmd TextYankPost * if v:register == '+' | call writefile([getreg('+')], '/tmp/yank') | silent! execute '!bash -c "source ~/.bashrc && cat /tmp/yank | websocat -1 -t -u ws://$HOST_MACHINE_IP:8881"' | redraw! | endif
 augroup END
 ]])
-noremap('v', '<leader>y', '"+y')
+vim.keymap.set('v', '<leader>y', '"+y', { noremap = true })
 ```
 This requires `export HOST_MACHINE_IP=<IP>` in your `~/.bashrc` and `cargo install websocat` in the system
