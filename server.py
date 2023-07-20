@@ -7,6 +7,7 @@ DEFAULT_PORT = 8881
 def run_server(port):
     async def handle_message(websocket):
         async for message in websocket:
+            # Replace the null character from vim yank with newline
             message = message.strip().replace("\x00", "\n")
             length = len(message)
             print(f"Received message {length=}")
